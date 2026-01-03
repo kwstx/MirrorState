@@ -7,9 +7,11 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' });
 
 export const metadata: Metadata = {
-  title: 'Mood Mirror',
+  title: 'MirrorState',
   description: 'Feel any emotion instantly',
 };
+
+import { GenerationProvider } from '@/lib/context/generation-context';
 
 export default function RootLayout({
   children,
@@ -19,17 +21,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${playfair.variable}`}>
-        <div className="app-container">
-          {/* Background Image */}
-          <div className="background-image" style={{ backgroundImage: `url('/background.png')` }} />
+        <GenerationProvider>
+          <div className="app-container">
+            {/* Background Image */}
+            <div className="background-image" style={{ backgroundImage: `url('/background.png')` }} />
 
-          {/* Overlay */}
-          <div className="background-overlay" />
+            {/* Overlay */}
+            <div className="background-overlay" />
 
-          <Header />
+            <Header />
 
-          {children}
-        </div>
+            {children}
+          </div>
+        </GenerationProvider>
       </body>
     </html>
   );

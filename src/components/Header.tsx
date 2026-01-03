@@ -6,14 +6,13 @@ export function Header() {
     return (
         <header className="site-header">
             <div className="logo-container" onClick={() => router.push('/')} style={{ cursor: 'pointer' }}>
-                <span className="logo-text">MoodMirror</span>
+                <span className="logo-text">MirrorState</span>
             </div>
 
             <nav className="main-nav">
-                <a href="#" className="nav-link">Features</a>
-                <a href="#" className="nav-link">Method</a>
-                <a href="#" className="nav-link">Pricing</a>
-                <a href="#" className="nav-link">Changelog</a>
+                <a href="/experience" className="nav-link">Experience</a>
+                <a href="/philosophy" className="nav-link">Philosophy</a>
+                <a href="/disclaimer" className="nav-link">Disclaimer</a>
             </nav>
 
             <div className="header-actions">

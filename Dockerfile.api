@@ -1,0 +1,22 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install Python dependencies
+RUN pip install --no-cache-dir \
+    fastapi \
+    uvicorn \
+    pydantic \
+    requests
+
+# Copy application code
+COPY . /app
+
+# Expose port
+EXPOSE 8005
+
+# Environment variables (default, can be overridden by compose)
+ENV PYTHONPATH=/app
+ENV MODEL_SERVICE_URL=http://model-service:8003
+
+CMD ["uvicorn", "scripts.api_service:app", "--host", "0.0.0.0", "--port", "8005"]

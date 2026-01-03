@@ -1,0 +1,30 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install system dependencies for building llama-cpp-python if needed, 
+# though we might likely use a pre-built wheel or just basic pip install.
+# GCC and build-essential are often needed for compiling C extensions.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+RUN pip install --no-cache-dir \
+    fastapi \
+    uvicorn \
+    pydantic \
+    requests \
+    llama-cpp-python
+
+# Copy application code
+COPY . /app
+
+# Expose port
+EXPOSE 8003
+
+# Command to run the service
+# We need to set PYTHONPATH so that 'scripts' module is found
+ENV PYTHONPATH=/app
+
+CMD ["uvicorn", "scripts.model_service:app", "--host", "0.0.0.0", "--port", "8003"]

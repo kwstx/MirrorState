@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  model-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.model
+    ports:
+      - "8003:8003"
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - app-network
+
+  api-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "8005:8005"
+    depends_on:
+      - model-service
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MODEL_SERVICE_URL=http://model-service:8003
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api-service
+    environment:
+      # This is tricky with Next.js Server Components vs Client Components.
+      # Server-side calls (from API routes) use internal DNS.
+      # Client-side calls might need a public URL, but we are using a Proxy Route.
+      # The Proxy Route runs on the Server (Next.js server), so it should use internal DNS.
+
+      # We just need to ensure the proxy logic in route.ts picks up the right URL.
+      # Currently route.ts has hardcoded "http://localhost:8005".
+      # We need to make that dynamic or change it here via env var if the code supports it.
+      # Let's assume we will update the code to read process.env.API_SERVICE_URL or similar.
+      - API_SERVICE_URL=http://api-service:8005
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
