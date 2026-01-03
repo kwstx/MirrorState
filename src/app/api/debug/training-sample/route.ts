@@ -17,7 +17,17 @@ export async function POST(request: Request) {
         const body = await request.json();
         const { profile, emotionId } = body;
 
-        const generationRequest = buildGenerationRequest(profile as NormalizedUserProfile, emotionId);
+        const generationRequest = buildGenerationRequest({
+            ...(profile as NormalizedUserProfile),
+            schemaVersion: "1.0.0",
+            psychometrics: {
+                personalityTraits: [],
+                confidenceLevel: "medium",
+                motivationStyle: "intrinsic",
+                humorTolerance: "medium",
+                sensitivities: []
+            }
+        }, emotionId);
 
         // Simulate an ideal response (in refined process, this would come from a human or superior model)
         const idealText = IDEAL_RESPONSES[emotionId] || "Default ideal response.";
