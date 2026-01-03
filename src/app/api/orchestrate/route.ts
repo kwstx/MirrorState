@@ -23,7 +23,17 @@ export async function POST(request: Request) {
             );
         }
 
-        const generationRequest = buildGenerationRequest(profile as NormalizedUserProfile, emotionId);
+        const generationRequest = buildGenerationRequest({
+            ...(profile as NormalizedUserProfile),
+            schemaVersion: "1.0.0",
+            psychometrics: {
+                personalityTraits: [],
+                confidenceLevel: "medium",
+                motivationStyle: "intrinsic",
+                humorTolerance: "medium",
+                sensitivities: []
+            }
+        }, emotionId);
 
         return NextResponse.json(generationRequest);
 
