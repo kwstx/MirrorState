@@ -22,63 +22,29 @@ export function MoodPage() {
     const moodData = getMoodIcon(moodValue);
 
     return (
-        <div style={{
-            position: 'fixed',
-            inset: 0,
-            backgroundColor: '#ffffff',
-            zIndex: 200,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '2rem'
-        }}>
-            <div
-                className="animate-fade-in-up"
-                style={{
-                    width: '100%',
-                    maxWidth: '48rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '4rem',
-                    alignItems: 'center'
-                }}>
+        <div className="page-overlay-container">
+            <div className="animate-fade-in-up page-content-wrapper" style={{ alignItems: 'center' }}>
                 {/* Header */}
                 <div style={{ textAlign: 'center' }}>
-                    <div style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.5rem',
-                        fontSize: '0.75rem',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.2em',
-                        color: '#94a3b8',
-                        marginBottom: '1rem',
-                        fontWeight: 600
-                    }}>
+                    <div className="page-header-label">
                         <span>Emotional State</span>
                     </div>
-                    <h1 style={{
-                        fontFamily: 'var(--font-serif)',
-                        fontSize: '3.5rem',
-                        lineHeight: '1.1',
-                        color: '#0f172a',
-                    }}>
+                    <h1 className="page-title">
                         <span className="elegant-italic">How are you</span> <br />
                         <span className="elegant-italic" style={{ opacity: 0.6 }}>feeling?</span>
                     </h1>
                 </div>
 
                 {/* Mood Slider Section */}
-                <div style={{ width: '100%', maxWidth: '32rem', padding: '2rem 0' }}>
+                <div style={{ width: '100%', maxWidth: '32rem', padding: '1rem 0' }}>
 
                     {/* Icon Display */}
                     <div style={{
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        marginBottom: '3rem',
-                        height: '100px' // Reserved space
+                        marginBottom: '2rem',
+                        height: '100px'
                     }}>
                         <div style={{
                             color: moodData.color,
@@ -112,7 +78,7 @@ export function MoodPage() {
                             left: 0,
                             width: `${moodValue}%`,
                             height: '4px',
-                            backgroundColor: moodData.color, // Color changes with mood
+                            backgroundColor: moodData.color,
                             borderRadius: '999px',
                             transition: 'background-color 0.3s ease, width 0.1s linear'
                         }} />
@@ -159,7 +125,7 @@ export function MoodPage() {
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     width: '100%',
-                    marginTop: '1rem'
+                    marginTop: 'auto'
                 }}>
                     <button
                         onClick={() => router.push('/reflection')}

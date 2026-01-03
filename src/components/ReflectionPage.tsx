@@ -10,52 +10,16 @@ export function ReflectionPage() {
     const [focusField, setFocusField] = useState<string | null>(null);
 
     return (
-        <div style={{
-            position: 'fixed',
-            inset: 0,
-            backgroundColor: '#ffffff',
-            zIndex: 200,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '2rem'
-        }}>
-            <div
-                className="animate-fade-in-up"
-                style={{
-                    width: '100%',
-                    maxWidth: '48rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '4rem',
-                    maxHeight: '100vh',
-                    overflowY: 'auto',
-                    padding: '1rem' // Buffer for scroll
-                }}>
+        <div className="page-overlay-container">
+            <div className="animate-fade-in-up page-content-wrapper">
                 {/* Header */}
                 <div style={{ textAlign: 'center' }}>
-                    <div style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.5rem',
-                        fontSize: '0.75rem',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.2em',
-                        color: '#94a3b8',
-                        marginBottom: '1rem',
-                        fontWeight: 600
-                    }}>
+                    <div className="page-header-label">
                         <Shield size={14} />
                         <span>Strengths & Insecurities</span>
                     </div>
-                    <h1 style={{
-                        fontFamily: 'var(--font-serif)',
-                        fontSize: '3.5rem',
-                        lineHeight: '1.1',
-                        color: '#0f172a',
-                    }}>
-                        <span className="elegant-italic">What are your</span> <br />
+                    <h1 className="page-title">
+                        <span className="elegant-italic">What are you</span> <br />
                         <span className="elegant-italic" style={{ opacity: 0.6 }}>Strengths & Insecurities?</span>
                     </h1>
                 </div>
