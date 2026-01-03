@@ -705,21 +705,26 @@ body {
 
 /* Footer (Logos/Text) */
 .hero-footer {
-  margin-top: 4rem;
-  /* Reduced */
+  position: absolute;
+  /* Added absolute positioning for mobile */
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  margin-top: 0;
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  /* Reduced */
+  gap: 1rem;
+  /* Compact gap */
   opacity: 0.4;
   filter: grayscale(100%);
   mix-blend-mode: multiply;
   flex-wrap: wrap;
-  /* Allow wrapping on very small screens */
 }
 
 @media (min-width: 768px) {
   .hero-footer {
+    position: static;
+    /* Restore static flow on desktop */
     margin-top: 8rem;
     gap: 3rem;
   }
@@ -728,8 +733,8 @@ body {
 .hero-footer span {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1rem;
-  /* Reduced */
+  font-size: 0.875rem;
+  /* Smaller text for mobile */
   transform: skewX(6deg);
   display: inline-block;
 }
