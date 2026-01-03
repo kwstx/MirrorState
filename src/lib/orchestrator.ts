@@ -1,4 +1,4 @@
-import { NormalizedUserProfile, GenerationRequest } from './types';
+import { StructuredUserProfile, GenerationRequest } from './types';
 import { EMOTIONS, EmotionConfig, MessageStyle } from '@/config/emotions';
 
 /**
@@ -54,7 +54,7 @@ function determineMessageType(
 }
 
 export function buildGenerationRequest(
-    profile: NormalizedUserProfile,
+    profile: StructuredUserProfile,
     targetEmotionId: string
 ): GenerationRequest {
     // 1. Find the target emotion config (Contract)
