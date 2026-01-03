@@ -55,8 +55,8 @@ export function ReflectionPage() {
                         lineHeight: '1.1',
                         color: '#0f172a',
                     }}>
-                        <span className="elegant-italic">What defines</span> <br />
-                        <span className="elegant-italic" style={{ opacity: 0.6 }}>your path?</span>
+                        <span className="elegant-italic">What are your</span> <br />
+                        <span className="elegant-italic" style={{ opacity: 0.6 }}>Strengths & Insecurities?</span>
                     </h1>
                 </div>
 
